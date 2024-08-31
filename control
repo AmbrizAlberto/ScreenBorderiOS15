@@ -1,0 +1,9 @@
+Package: ambrizalberto
+Name: ScreenBorder
+Version: 0.0.2
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: Alberto Ambriz AlDev
+Author: Alberto Ambriz AlDev
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+    <key>Title</key>
+    <string>Border Settings</string>
+    <key>Sections</key>
+    <array>
+        <dict>
+            <key>Header</key>
+            <string>Border Configuration</string>
+            <key>FooterText</key>
+            <string>Adjust the border settings.</string>
+            <key>Items</key>
+            <array>
+                <dict>
+                    <key>Key</key>
+                    <string>borderRadius</string>
+                    <key>Title</key>
+                    <string>Border Radius</string>
+                    <key>Type</key>
+                    <string>PSSliderSpecifier</string>
+                    <key>DefaultValue</key>
+                    <real>5.0</real>
+                    <key>MinimumValue</key>
+                    <real>0.0</real>
+                    <key>MaximumValue</key>
+                    <real>20.0</real>
+                </dict>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>
+
