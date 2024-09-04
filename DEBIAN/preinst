@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Montar el sistema de archivos como escribible
+mount -o rw,remount /
+
+# Crear los directorios necesarios en /var/mobile
+mkdir -p /var/mobile/Library/Tweaks/ScreenBorder
+
+# Copiar los archivos a los directorios correctos
+cp -R /Library/MobileSubstrate/DynamicLibraries/* /var/mobile/Library/Tweaks/ScreenBorder/
+
+# Configuración de permisos
+chmod -R 755 /var/mobile/Library/Tweaks/ScreenBorder
+
+# Eliminar cualquier archivo de instalación previa si existe
+if [ -f /Library/MobileSubstrate/DynamicLibraries/ScreenBorder.plist ]; then
+    rm -f /Library/MobileSubstrate/DynamicLibraries/ScreenBorder.plist
+fi
+
+if [ -f /Library/MobileSubstrate/DynamicLibraries/ScreenBorder.dylib ]; then
+    rm -f /Library/MobileSubstrate/DynamicLibraries/ScreenBorder.dylib
+fi
