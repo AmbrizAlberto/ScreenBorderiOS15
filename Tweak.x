@@ -4,7 +4,7 @@
 NSString* getDynamicPreferencesPath() {
     // Obtener el UUID del directorio de la aplicación en rootless
     NSString *appSupportPath = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *preferencesPath = [appSupportPath stringByAppendingPathComponent:@"/Preferences/com.tuusuario.bordertweak.plist"]; // Ruta del plist
+    NSString *preferencesPath = [appSupportPath stringByAppendingPathComponent:@"/Preferences/com.aldev.bordertweak.plist"]; // Ruta del plist
     return preferencesPath;
 }
 
@@ -19,11 +19,21 @@ NSString* getDynamicPreferencesPath() {
     // Cargar el path dinámico de las preferencias
     NSString *preferencesPath = getDynamicPreferencesPath();
 
-    // Cargar el radio del borde desde las preferencias
+    // Cargar las preferencias del archivo .plist
     NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile:preferencesPath];
-    NSNumber *borderRadius = preferences[@"borderRadius"] ?: @5.0; // Valor por defecto si no hay configuraciones
-    
+    if (!preferences) {
+        // Si no se pudo cargar el archivo, mostrar mensaje de depuración y usar valores por defecto
+        NSLog(@"ScreenBorder Tweak: No se pudieron cargar las preferencias. Usando valores por defecto.");
+        preferences = @{@"borderRadius": @5.0}; // Valor por defecto
+    } else {
+        NSLog(@"ScreenBorder Tweak: Preferencias cargadas correctamente desde %@", preferencesPath);
+    }
+
+    // Obtener el radio del borde desde las preferencias o usar un valor por defecto
+    NSNumber *borderRadius = preferences[@"borderRadius"] ?: @5.0;
+
     if (mainWindow != nil) {
+        // Aplicar el borde a la ventana principal
         mainWindow.layer.borderColor = [UIColor blackColor].CGColor;
         mainWindow.layer.borderWidth = 5.0; // Grosor del borde negro
         mainWindow.layer.cornerRadius = [borderRadius floatValue]; // Aplicar radio personalizado
